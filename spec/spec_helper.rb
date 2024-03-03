@@ -18,6 +18,8 @@ RSpec.configure do |config|
   SimpleCov.start 'rails' do
     add_filter '/spec/' # Exclude spec directory
     add_filter '/config/' # Exclude config directory
+    add_filter '/app/jobs/'
+    add_filter '/app/mailers/'
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -16,7 +16,7 @@ class DetailsController < ApplicationController
         if detail.save
             render json: { status: { success: "Detail created successfuly"} }
         else
-            render json: { status: { error: detail.errors.full_messages} }
+            render json: { status: { error: detail.errors.full_messages} }, status: :unprocessable_entity and return
         end
     end
 

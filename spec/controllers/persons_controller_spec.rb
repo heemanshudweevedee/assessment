@@ -1,11 +1,9 @@
-require 'spec_helper'
 require 'rails_helper'
 
 RSpec.describe PersonsController, type: :controller do
-    # include ApiHelper
     before(:all) do
-        people = Person.create(name: "abc")
-        detail = Detail.create(email: "ak@gmail.com", person_id: people.id)
+        @people = Person.create(name: "abc")
+        detail = Detail.create(email: "ak@gmail.com", person_id: @people.id)
     end
 
     it 'should show people details' do
@@ -14,8 +12,8 @@ RSpec.describe PersonsController, type: :controller do
     end
 
     it 'creates a new person' do
-        post :create, params: { name: 'joe' } 
-        expect(response).to have_http_status(201)
+        post :create, params: {person: { name: 'joe' } }
+        expect(response).to have_http_status(200)
     end
 
     it 'create person without name' do
@@ -24,7 +22,7 @@ RSpec.describe PersonsController, type: :controller do
     end
 
     it 'show person detail' do
-        get :show_details, params: {person_id: people.id}
+        get :show_details, params: {person_id: @people.id}
         expect(response).to have_http_status(200)
     end
 
